@@ -19,7 +19,7 @@ const app = express();
 // FIXED: CORS MUST BE FIRST
 // -------------------------
 app.use(cors({
-  origin: ["http://localhost:5000", "https://psycare-frontend.onrender.com"],
+  origin: ["http://localhost:5000", "https://psycare-2btm.onrender.com"],
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
