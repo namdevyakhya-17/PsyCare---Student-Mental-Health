@@ -18,7 +18,7 @@ const router = express.Router();
 
 // Initialize Gemini
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 // ---------------- Emergency ----------------
 const EMERGENCY_REPLY = `Your life matters, and I want you to get help immediately.  
@@ -127,7 +127,7 @@ async function translateTextIfNeeded(text, lang) {
 }
 
 // ---------------- Chat Endpoint ----------------
-router.post("/chat", authMiddleware, async (req, res) => {
+router.post("/", authMiddleware, async (req, res) => {
   const { message, lang, location } = req.body;
   const userId = req.user?.id || req.user?._id;
 

@@ -6,6 +6,7 @@ const Tests = () => {
   const [tests, setTests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [reports, setReports] = useState({});
+  const appUrl = import.meta.env.VITE_APP_URL;
 
   // read auth from localStorage
   const userId = localStorage.getItem("user")
@@ -18,7 +19,7 @@ const Tests = () => {
 
     // fetch tests
     axios
-      .get("https://psycare-dxmt.onrender.com/api/tests", {
+      .get(`${appUrl}/api/tests`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setTests(res.data))
@@ -28,7 +29,7 @@ const Tests = () => {
     // fetch all reports for user
     if (userId) {
       axios
-        .get(`https://psycare-dxmt.onrender.com/api/tests/user/${userId}/allreport`, {
+        .get(`${appUrl}/api/tests/user/${userId}/allreport`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {

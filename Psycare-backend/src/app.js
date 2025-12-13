@@ -36,7 +36,7 @@ app.use(bodyParser.json());
 // -------------------------
 app.use("/api/auth", authRoutes);
 app.use("/api/tests", testRoutes);
-app.use("/api", chatRoutes);
+app.use("/api/chat", chatRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/appointments", appointment);
 app.use("/api/wellness", wellnessRoutes);

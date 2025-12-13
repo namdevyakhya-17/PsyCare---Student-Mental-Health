@@ -4,11 +4,13 @@ export function useAppointments() {
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const appUrl = import.meta.env.VITE_APP_URL;
+
 
   const fetchAppointments = async () => {
     setLoading(true);
     try {
-      const res = await fetch("https://psycare-dxmt.onrender.com/api/appointment", {
+      const res = await fetch(`${appUrl}/api/appointment`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -36,7 +38,7 @@ export function useAppointments() {
 
   const cancelAppointment = async (id) => {
     try {
-      const res = await fetch(`https://psycare-dxmt.onrender.com/api/appointments/${id}`, {
+      const res = await fetch(`${appUrl}/api/appointments/${id}`, {
         method: "DELETE",
         credentials: "include",
       });

@@ -7,6 +7,7 @@ const ChatSection = () => {
   ]);
   const [input, setInput] = useState("");
   const messagesEndRef = useRef(null);
+  
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });

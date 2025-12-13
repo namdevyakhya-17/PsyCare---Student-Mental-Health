@@ -151,6 +151,8 @@ const TestPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const [testResult, setTestResult] = useState(null);
+  const appUrl = import.meta.env.VITE_APP_URL;
+
 
   useEffect(() => {
     const fetchTestQuestions = async () => {
@@ -162,7 +164,7 @@ const TestPage = () => {
       }
       try {
         const response = await axios.get(
-          `https://psycare-dxmt.onrender.com/api/tests/${testId}/questions`,
+          `${appUrl}/api/tests/${testId}/questions`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -211,7 +213,7 @@ const TestPage = () => {
       const payload = { userId, answers };
       console.log("Submitting payload:", payload);
       const response = await axios.post(
-        `https://psycare-dxmt.onrender.com/api/tests/${testId}/submit`,
+        `${appUrl}/api/tests/${testId}/submit`,
         payload,
         {
           headers: { Authorization: `Bearer ${token}` },

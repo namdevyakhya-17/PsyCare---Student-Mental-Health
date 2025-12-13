@@ -14,6 +14,7 @@ const AuthSection = () => {
     password: "",
     role: "",
   });
+  const appUrl = import.meta.env.VITE_APP_URL;
 
   const avatars = [
     "😊", "😇", "🐻", "😉", "🌸", "⭐", "🥸", "🌙", "🌻", "🦋", "🍃",
@@ -68,7 +69,7 @@ const AuthSection = () => {
     try {
       let res, data;
       if (isSignUp) {
-        res = await fetch("https://psycare-dxmt.onrender.com/api/auth/signup", {
+        res = await fetch(`${appUrl}/api/auth/signup`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -81,7 +82,7 @@ const AuthSection = () => {
           }),
         });
       } else {
-        res = await fetch("https://psycare-dxmt.onrender.com/api/auth/login", {
+        res = await fetch(`${appUrl}/api/auth/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

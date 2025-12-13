@@ -8,18 +8,19 @@ export default function DMChatSection() {
   const [newMessage, setNewMessage] = useState("");
   const token = localStorage.getItem("token");
   const myId = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).id : null;
+  const appUrl = import.meta.env.VITE_APP_URL;
 
   // Mark self online on mount
   useEffect(() => {
     if (token) {
-      fetch("https://psycare-dxmt.onrender.com/api/chat/online", {
+      fetch(`${appUrl}/api/chat/online`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
       });
     }
     return () => {
       if (token) {
-        fetch("https://psycare-dxmt.onrender.com/api/chat/offline", {
+        fetch(`${appUrl}/api/chat/offline`, {
           method: "POST",
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -31,7 +32,7 @@ export default function DMChatSection() {
   useEffect(() => {
     if (!token) return;
     const fetchOnline = async () => {
-      const res = await fetch("https://psycare-dxmt.onrender.com/api/chat/online", {
+      const res = await fetch(`${appUrl}/api/chat/online`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -46,7 +47,7 @@ export default function DMChatSection() {
   useEffect(() => {
     if (!selectedUser || !token) return;
     const fetchMessages = async () => {
-      const res = await fetch(`https://psycare-dxmt.onrender.com/api/chat/dm/${selectedUser._id}`, {
+      const res = await fetch(`${appUrl}/api/chat/dm/${selectedUser._id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -60,7 +61,7 @@ export default function DMChatSection() {
   // Send DM
   const handleSend = async () => {
     if (!newMessage.trim() || !selectedUser) return;
-    const res = await fetch("https://psycare-dxmt.onrender.com/api/chat/dm", {
+    const res = await fetch(`${appUrl}/api/chat/dm`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

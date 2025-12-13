@@ -7,6 +7,8 @@ export default function CounselorBooking() {
   const [selectedTime, setSelectedTime] = useState("");
   const [duration, setDuration] = useState("30"); // default 30 mins
   const [message, setMessage] = useState("");
+  const appUrl = import.meta.env.VITE_APP_URL;
+
 
   // ✅ inline helper functions
   const getStoredUser = () => {
@@ -36,7 +38,7 @@ export default function CounselorBooking() {
         return;
       }
       try {
-        const res = await fetch("https://psycare-dxmt.onrender.com/api/users?role=psychologist", {
+        const res = await fetch(`${appUrl}/api/users?role=psychologist`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
@@ -63,7 +65,7 @@ export default function CounselorBooking() {
     try {
       const appointmentTime = new Date(`${selectedDate}T${selectedTime}`).toISOString();
 
-      const res = await fetch("https://psycare-dxmt.onrender.com/api/appointments", {
+      const res = await fetch(`${appUrl}/api/appointments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

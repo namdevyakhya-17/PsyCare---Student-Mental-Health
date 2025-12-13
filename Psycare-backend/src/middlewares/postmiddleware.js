@@ -40,7 +40,7 @@ const postMiddleware = async (req, res, next) => {
 
     // 2. Use Hugging Face suicidality detection model
     const response = await axios.post(
-      "https://api-inference.huggingface.co/models/sentinet/suicidality",
+      "https://router.huggingface.co/hf-inference/models/sentinet/suicidality",
       { inputs: textToCheck },
       {
         headers: {

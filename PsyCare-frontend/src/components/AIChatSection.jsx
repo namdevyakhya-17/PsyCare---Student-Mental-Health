@@ -18,6 +18,7 @@ const AIChatSection = () => {
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [lang, setLang] = useState("en"); // default language
   const token = localStorage.getItem("token");
+  const appUrl = import.meta.env.VITE_APP_URL;
 
   const sendMessage = async () => {
     if (!input.trim()) return;
@@ -34,7 +35,7 @@ const AIChatSection = () => {
   let hotlines = [];
   let therapists = [];
     try {
-      const response = await fetch("https://psycare-dxmt.onrender.com/api/chat", {
+      const response = await fetch(`${appUrl}/api/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

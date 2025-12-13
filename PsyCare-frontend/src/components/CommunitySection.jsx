@@ -24,6 +24,8 @@ export default function CommunityForum() {
   const [commentInputs, setCommentInputs] = useState({});
   const [privateMessage, setPrivateMessage] = useState("");
   const [selectedUser, setSelectedUser] = useState(null);
+  const appUrl = import.meta.env.VITE_APP_URL;
+
 
   // -----------------------
   // Fetch posts
@@ -31,7 +33,7 @@ export default function CommunityForum() {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("https://psycare-dxmt.onrender.com/api/forum", {
+      .get(`${appUrl}/api/forum`, {
         // headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -52,7 +54,7 @@ export default function CommunityForum() {
     if (!newContent.trim()) return;
     try {
       const res = await axios.post(
-        "https://psycare-dxmt.onrender.com/api/forum",
+        `${appUrl}/api/forum`,
         { title: newTitle || "General", content: newContent },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -81,7 +83,7 @@ export default function CommunityForum() {
   const handleLike = async (id) => {
     try {
       const res = await axios.post(
-        `https://psycare-dxmt.onrender.com/api/forum/${id}/like`,
+        `${appUrl}/api/forum/${id}/like`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -100,7 +102,7 @@ export default function CommunityForum() {
     if (!commentInputs[id]?.trim()) return;
     try {
       const res = await axios.post(
-        `https://psycare-dxmt.onrender.com/api/forum/${id}/reply`,
+        `${appUrl}/api/forum/${id}/reply`,
         { message: commentInputs[id] },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -121,7 +123,7 @@ export default function CommunityForum() {
     if (!privateMessage.trim() || !selectedUser) return;
     try {
       await axios.post(
-        "https://psycare-dxmt.onrender.com/api/forum/message",
+        `${appUrl}/api/forum/message`,
         { message: privateMessage, to: selectedUser },
         { headers: { Authorization: `Bearer ${token}` } }
       );
