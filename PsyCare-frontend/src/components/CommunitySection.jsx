@@ -261,7 +261,7 @@ export default function CommunityForum() {
                         key={idx}
                         className="text-sm text-gray-600 bg-gray-50 p-2 rounded-md"
                       >
-                        <strong>{r.user}:</strong> {r.message}
+                        <strong>Anonymous:</strong> {r.message}
                       </div>
                     ))}
 
@@ -346,7 +346,7 @@ export default function CommunityForum() {
         {selectedUser && (
           <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center p-4">
             <div className="bg-white rounded-lg p-6 w-full max-w-md space-y-4">
-              <h3 className="text-lg font-semibold">Reply Privately to {selectedUser}</h3>
+              <h3 className="text-lg font-semibold">Reply Privately</h3>
               <textarea
                 className="w-full border rounded-md p-2"
                 rows={4}
